@@ -18,7 +18,7 @@ import shap
 import json
 
 # Some constants
-THRESHOLD_MODEL = 0.45
+THRESHOLD_MODEL = 0.55
 PATH_CSV = 'application_test.csv'
 PATH_ICON = 'icon.png'
 SIZE_PARIS = 10000
@@ -26,7 +26,7 @@ SIZE_MARSEILLE = 7000
 
 from  matplotlib.colors import LinearSegmentedColormap
 cmap=LinearSegmentedColormap.from_list('rg',['#12c43a', 'w',  '#e23f3f'], N=256) 
-colors = ['#12c43a', '#e23f3f'] # Red - Green
+colors = ['#12c43a', '#e23f3f'] # Green - Red
 paper_color = '#0e1117' ; plot_color = '#32363E' # Color of streamlit bg
 font_color = 'white' ; font_family='Lato' ; font_size=20
 
@@ -144,14 +144,18 @@ def display_info_client(client):
         domain = {'x': [0, 1], 'y': [0, 1]},
         title = {'text': "Default risk %"},
         gauge = {'axis': {'range': [0, 100]},
-                'bar': {'color': "darkred"},
-                'threshold' : {'line': {'color': "white", 'width': 4}, 'thickness': 0.75, 'value': THRESHOLD_MODEL*100}}))
+                'bar': {'color': "#F5F9E9"},
+                'steps' : [
+                    {'range': [0, THRESHOLD_MODEL*100], 'color': colors[0]},
+                    {'range': [THRESHOLD_MODEL*100, 100], 'color': colors[1]}],
+                }))
+    
     st.plotly_chart(fig, True)
 
     if res.json()['1'] >= THRESHOLD_MODEL:
-        st.markdown('<p style="text-align:center; font_size:30px; line-height: 10px ; font-family:Candara;">Credit refused</p>',True)
+        st.markdown('<p style="text-align:center; font_size:30px; line-height: 10px ; font-family:Candara;">Credit has been refused</p>',True)
     else:
-        st.markdown('<p style="text-align:center; font_size:30px; line-height: 10px ; font-family:Candara;">Credit accepted</p>',True)
+        st.markdown('<p style="text-align:center; font_size:30px; line-height: 10px ; font-family:Candara;">Credit has been accepted</p>',True)
 
     with st.expander('Find here all the infos about this client', False):
         st.write(client.append(pd.Series(), ignore_index=True))
@@ -264,6 +268,7 @@ def display_compare_client(client_id: int, db_selected: pd.DataFrame, features_t
                 st.warning(f'No info for {col} for client {client_id}')
                 continue
 
+            
             # In case of NaN in the database for the specific feature
             to_show_accepted = db_accepted[col].dropna(axis=0)
             to_show_refused = db_refused[col].dropna(axis=0)          

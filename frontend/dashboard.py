@@ -50,6 +50,7 @@ if 'client_compare_placeholder' not in st.session_state:
 
 if 'dbs_names' not in st.session_state:
     st.session_state.dbs_names = [
+        'Home',
         'Paris\' clients', 
         'Marseille\'s clients'
     ]
@@ -71,11 +72,11 @@ db_choosen = st.sidebar.radio(
 # st.info(st.session_state.tmp_db_choosen)
 
 # st.write(db_choosen)
-if st.session_state.intro_page == 0 or db_choosen is None:
+if st.session_state.intro_page == 0 or db_choosen =='Home':
     st.session_state.intro_page = 1
     st.session_state.tmp_db_choosen = db_choosen 
     display_intro_page()
-elif st.session_state.tmp_db_choosen != db_choosen and db_choosen is not None: # Change on the radio widget
+elif db_choosen != 'Home' and st.session_state.tmp_db_choosen != db_choosen: # Change on the radio widget
     st.session_state.current_db = st.session_state.dbs[db_choosen]
     display_info_db(st.session_state.current_db, db_choosen)
 
@@ -88,7 +89,7 @@ elif st.session_state.tmp_db_choosen != db_choosen and db_choosen is not None: #
     st.sidebar.button('Results', on_click=display_results, args=(int(id_client), features_to_comp,  ))
 
     st.session_state.tmp_db_choosen = db_choosen 
-elif db_choosen is not None:
+elif db_choosen != 'Home':
     st.session_state.current_db = st.session_state.dbs[db_choosen]
     # display_info_db(st.session_state.current_db, db_choosen)
     # st.sidebar.button('Display infos database', on_click=display_info_db, args=(st.session_state.current_db, db_choosen, ))
@@ -112,15 +113,18 @@ with st.sidebar.expander("Add clients data", True):
 
     def submit_add_db(db_name: str, df: pd.DataFrame):
         """ Callback function during adding a new db. """
-        db_name = uploaded_file.name
-        
-        # display a warning if the user entered an existing name
-        real_name = db_name.replace('.csv', '')
-        if real_name in st.session_state.dbs_names:
-            st.warning(f'The "{real_name}" already exists.')
+        # check if the csv is correct
+        if list(st.session_state.dbs['Paris\' clients'].columns) != list(df.columns):
+            st.warning('The features of this .csv does not correspond to what\'s expected.') 
         else:
-            st.session_state.dbs_names.append(real_name)
-            st.session_state.dbs[real_name] = df
+            db_name = uploaded_file.name
+            # display a warning if the user entered an existing name
+            real_name = db_name.replace('.csv', '')
+            if real_name in st.session_state.dbs_names:
+                st.warning(f'The "{real_name}" already exists.')
+            else:
+                st.session_state.dbs_names.append(real_name)
+                st.session_state.dbs[real_name] = df
 
     if uploaded_file is not None:
         st.button('Add', key='button_add_db',
@@ -131,9 +135,11 @@ with st.sidebar.expander("Add clients data", True):
         # DELETING A DATABASE
         def submit_delete_db(db_name: str):
             """ Callback function during deleting an existing db. """
+
+            # Check if it's not the Home button
             st.session_state.dbs_names.remove(db_name)
 
-        to_delete = st.selectbox('Choose a database to delete:', st.session_state.dbs_names)
+        to_delete = st.selectbox('Choose a database to delete:', st.session_state.dbs_names[1:])
         st.button('Delete', key='button_delete_db',
                 on_click=submit_delete_db, args=(to_delete, ))
  

@@ -19,7 +19,7 @@ async def predict_client(request: Request):
     json_data = json.loads(received)
     client = pd.DataFrame(data=np.array(list(json_data.values())).reshape(1,-1), columns=list(json_data.keys()))
 
-    to_change_type = pd.read_csv('./backend/sample.csv') # Load examples to have to right 
+    to_change_type = pd.read_csv('./sample.csv') # Load examples to have to right 
 
     # Changing type to make it corresponds to the type of the value seen during fit
     for col in client.columns:

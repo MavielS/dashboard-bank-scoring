@@ -6,7 +6,7 @@ import shap
 from sklearn.preprocessing import LabelEncoder
 
 # Load all the neccessary objects
-path_rf = './backend/rf_objects/'
+path_rf = './rf_objects/'
 
 model = pickle.load(open(path_rf+'rf_best', 'rb'))
 scaler_rf = pickle.load(open(path_rf+'scaler_rf', 'rb'))
