@@ -12,9 +12,10 @@ La partie entrainement et interprétation est disponible sur mon github [ici](ht
 # Présentation du projet 
 
 Ce projet constitue le [projet n°7](https://openclassrooms.com/fr/paths/164/projects/632/assignment) de ma formation Data Scientist. <br>
-L'objectif était de développer pour la société « Prêt à Dépenser », une société de crédit de consommation, un modèle de scoring de la probabilité de défaut de paiement d’un client avec pas ou peu d’historique de prêt.<br> <br>
+L'objectif était de développer pour la société « Prêt à Dépenser », une société de crédit de consommation, un modèle de scoring de la probabilité de défaut de paiement d’un client avec pas ou peu d’historique de prêt.<br>
 
-Par la suite, j'ai pu déployer ce modèle sous forme d'une API exploitée par une interface web interactive.
+Par la suite, j'ai pu déployer ce modèle sous forme d'une API exploitée par une interface web interactive.<br>
+Retrouvez ici une [présentation vidéo du dashboard](https://youtu.be/5cIWq9iiQWM).
 
 # Fichiers disponibles
 
