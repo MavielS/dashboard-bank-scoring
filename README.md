@@ -23,7 +23,7 @@ Vous pouvez trouver ici:
 2. Le dossier backend: il contient le code pour l'API FastAPI ainsi que le dockerfile associé.
 3. Un fichier docker-compose permettant un déploiement rapide.
 
-
+![alt text](https://github.com/MavielS/dashboard-bank-scoring/blob/main/archi.PNG)
 
 # Execution en local
 
