@@ -32,7 +32,7 @@ Si vous souhaitez exécuter ce projet en local dans un conteneur docker, exécut
     docker-compose build
     docker-compose up
 
-Pour visiter la documentation du service résultant est disponible à l'adresse http://localhost:8000.  
+Pour visiter la documentation du service résultant est disponible à l'adresse http://localhost:8080.  
 L'interface streamlit est disponible à l'adresse  http://localhost:8501.
 
 Pour voir les logs:
