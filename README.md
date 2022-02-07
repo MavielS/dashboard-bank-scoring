@@ -7,15 +7,19 @@ La partie entrainement et interprétation est disponible sur mon github [ici](ht
   </b>
   <i>(Le chargement de la page peut prendre jusqu'à 30s si le serveur n'a pas été utilisé depuis un moment.)</i>
 </p> 
+<p align='center';">
+  <b>Retrouvez
+    <a href="https://youtu.be/flV-HBf5Hdw">ici une présentation vidéo du dashboard</a> ! </br>
+  </b>
+</p> 
+                                                    
 
 
 # Présentation du projet 
 
-Ce projet constitue le [projet n°7](https://openclassrooms.com/fr/paths/164/projects/632/assignment) de ma formation Data Scientist. <br>
-L'objectif était de développer pour la société « Prêt à Dépenser », une société de crédit de consommation, un modèle de scoring de la probabilité de défaut de paiement d’un client avec pas ou peu d’historique de prêt.<br>
+Ce projet constitue le [projet n°7](https://openclassrooms.com/fr/paths/164/projects/632/assignment) de ma formation Data Scientist. <br> <br>
+![](https://github.com/MavielS/modele-de-scoring-bancaire/blob/main/in_a_nutshell.jpg)
 
-Par la suite, j'ai pu déployer ce modèle sous forme d'une API exploitée par une interface web interactive.<br>
-Retrouvez ici une [présentation vidéo du dashboard](https://youtu.be/flV-HBf5Hdw).
 
 # Fichiers disponibles
 
